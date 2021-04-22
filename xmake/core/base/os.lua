@@ -711,10 +711,12 @@ function os.execv(program, argv, opt)
     -- open command
     local ok = -1
     local proc = process.openv(filename, argv or {}, openopt)
+    print("open", filename, os.args(argv or {}))
     if proc ~= nil then
 
         -- wait process
         local waitok, status = proc:wait(-1)
+        print("wait", filename, waitok, status)
         if waitok > 0 then
             ok = status
         end
